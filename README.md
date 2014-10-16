@@ -3,7 +3,7 @@ ProjetASD3
 
 <i>Projet d'Algorithmique et Structure de Données 3 (2014)</i>
 
-- Programme aussi efficace que possible -> avoir une complexité minimale (garantie d'une efficacité maximum)
+- __Programme aussi efficace que possible -> avoir une complexité minimale (garantie d'une efficacité maximum)__
 
   - <u>Entrée</u>: 
     - les <b>N</b> fichiers contenant 1 page chacun (avec un id sur la 1ère ligne)
@@ -14,7 +14,7 @@ ProjetASD3
     - <b>id des pages groupés chapitre par chapitre</b>
     - pour <b>chaque</b> chapitre, la <b>liste des mots clés propres</b> au chapitre (contenus dans ce chapitre uniquement)
 
-- Rapport:
+- __Rapport:__
   
   - commandes de compilation / exécution en console
   - 'vue globale' de l'approche sous forme d'un algo en pseudo-code
@@ -26,7 +26,7 @@ ProjetASD3
     - raisons pour lesquelles cet algo est aussi efficace que possible
   - jeux de données commentés
 
-- Généralités:
+- __Généralités:__
   - fichiers sources -> répertoire DIEDHIOU_MOROZOV -> DIEDHIOU_MOROZOV.zip
     - <i><b>MADOC AVANT 05 DECEMBRE MINUIT</b></i>
   - dernière séance de TP -> démo de 10min max.
