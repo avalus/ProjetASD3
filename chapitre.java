@@ -1,9 +1,9 @@
 import java.lang*;
-import java.until*;
+import java.util*;
 
 class Chapitre
 {
-	private Avl<Page> pages;
+	private Avl pages;
 	
 	public Chapitre()
 	{

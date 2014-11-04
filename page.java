@@ -1,10 +1,10 @@
 import java.lang*;
-import java.until*;
+import java.util*;
 
 class page
 {
 	int id;
-	Arbre<char> p;
+	Arbre p;
 	public Page( int id)
 	{
 	  this.id = id;

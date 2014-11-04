@@ -16,6 +16,7 @@ class Arbre
 	public void inserer( char car )
 	{
 	  this.elt = car;
+      this.fils = new Arbre()[26];
 	}
 
 }
