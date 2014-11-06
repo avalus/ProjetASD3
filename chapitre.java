@@ -1,5 +1,5 @@
-import java.lang*;
-import java.util*;
+import java.lang.*;
+import java.util.*;
 
 class Chapitre
 {
@@ -10,14 +10,15 @@ class Chapitre
 	   pages = new Avl<Page>();
 	}
 
-	public union( int id)
+	public void union(int id1, int id2)
 	{
 
 	}
-	public int classe( int id)
+	
+	public int classe(int id)
 	{
 
 	}
   
-
+	
 }

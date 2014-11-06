@@ -1,5 +1,5 @@
-import java.lang*;
-import java.util*;
+import java.lang.*;
+import java.util.*;
 
 class Avl
 {
@@ -14,17 +14,18 @@ class Avl
 		g = null;
 	}
 	
-	/* Retourne l'arbre après ajout de l'élément x + équilibrage*/
+	/* Retourne l'arbre après ajout de l'élément x + équilibrage */
 	public Avl ajouter(int x, Avl A)
 	{	    
-		if (A = null)
+		int h = A.g.bal;
+		if (A == null)
 		{
  	 		A = new Avl(0,0); 
 			A.elt = x; A.bal = 0;
 
 			return (A);
 		}
-		else if(x = A.elt)
+		else if(x == A.elt)
 		{
 			return (A);
 		}
@@ -35,10 +36,10 @@ class Avl
 		else
 		{	
 			A.g = ajouter(x, A.g); 
-			int h = A.g.bal; h = -h;
+			h = -h;
 		}
 
-		if (h = 0)
+		if (h == 0)
 		{
 			return (A);
 		}
@@ -48,7 +49,7 @@ class Avl
 			A = equilibrer(A);
 		}
 		
-		if (A.bal = 0)
+		if (A.bal == 0)
 		{
 			return (A);
 		}
@@ -61,7 +62,7 @@ class Avl
 	/* Entrée A arbre tel que A.g , A.d sont des AVL -2 ≤ bal(A) ≤ 2 */
 	public Avl equilibrer(Avl A) 
 	{   
-		if (A.bal = 2) 
+		if (A.bal == 2) 
 		{
 			if (A.d.bal >= 0)
 			{
@@ -74,7 +75,7 @@ class Avl
 				return rotG(A);
 			}
 		}
-		else if (A.bal = -2) 
+		else if (A.bal == -2) 
 		{
 			if (A.g.bal <= 0)
 			{
@@ -96,9 +97,10 @@ class Avl
 	/* Retourne l'arbre après suppression de l'élément x + équilibrage */
 	public Avl enlever(int x, Avl A)
 	{
-		if (A = null)
+		int h = A.g.bal;
+		if (A == null)
 		{
-			return (A,0);
+			return (A);
 		}
 		else if (x > A.elt) 
 		{
@@ -107,13 +109,13 @@ class Avl
 		else if (x < A.elt) 
 		{
 	    		A.g = enlever(x, A.g);
-		        int h = A.g.bal; h = -h;
+		        h = -h;
 		}
-		else if (A.g = null) 
+		else if (A.g == null) 
 		{
 			return A.d;
 		}
-		else if (A.d = null)
+		else if (A.d == null)
 		{
 			return A.g;
 		}
@@ -130,7 +132,7 @@ class Avl
 		{
 			A.bal = A.bal + h;
 			A = equilibrer(A);
-			if (A.bal = 0)
+			if (A.bal == 0)
 			{
 				return A;
 			}
@@ -190,16 +192,17 @@ class Avl
 	/* Retourne l'arbre après suppression de l'élément min + équilibrage */
 	public Avl oterMin(Avl A) 
 	{
+		int h = A.g.bal/*, min*/;
 		if(A.g == null) 
 		{
-			min = A.elt;
+			/*min = A.elt;*/
 
 			return A.d;
 		}
 		else
 		{
 			A.g = oterMin(A.g); 
-			int h = A.g.bal; h = -h;
+			h = -h;
 		}
 		if (h == 0)
 		{
@@ -209,7 +212,7 @@ class Avl
 		{
 			A.bal = A.bal + h;
 			A = equilibrer(A);
-			if (A.bal = 0)
+			if (A.bal == 0)
 			{
 				return A;
 			}
@@ -218,6 +221,7 @@ class Avl
 				return A;
 			}
 		}
+	}
 	
 	/* Retourne l'élement minimum de l'AVL */
 	public int min(Avl A)
@@ -229,6 +233,26 @@ class Avl
 			while(courant.g != null)
 			{
 				courant = courant.g;
+			}
+
+         		return courant.elt;
+		}
+		else 
+		{
+			System.out.println("Erreur : structure vide");
+		}
+	}
+	
+	/* Retourne l'élement maximum de l'AVL */
+	public int max(Avl A)
+	{
+		if(A != null)
+		{
+			Avl courant = A;
+
+			while(courant.d != null)
+			{
+				courant = courant.d;
 			}
 
          		return courant.elt;
