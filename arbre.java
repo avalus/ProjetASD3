@@ -1,18 +1,20 @@
+
 import java.lang.*;
 import java.util.*;
+import java.io.*;
 
 
 class Arbre {
 
   char val;
-  Arbre g, suiv;
+  Arbre down, next;
   final static char FM = '\0';// pour le marquage du fin de mot
-  private static Stack pile = new Stack ();//variable global, utile pour l'affichage 
+  private static Stack path = new Stack ();//variable global, utile pour l'affichage 
 
-  public Arbre(char val) { this.val = val ; }
+  public Arbre(char val) { this.val = val ;down = next =null; }
   public Arbre(char val, Arbre b, Arbre s) {
     this.val = val ;
-    g = down ; suiv = s;
+    this.down = b ; next = s;
   }
  
 
@@ -23,7 +25,7 @@ class Arbre {
    public static boolean contient(String s, int i, Arbre t) {
       char c = getChar(s,i) ;  // premier caractère du suffixe
       if (c == FM) {return t.val == FM; // car liste triée
-      }else{ for ( ; t != null ; t = t.next) {if (c == t.val){ return contient(s, i+1, t.down); 
+      }else{ for ( ; t != null ; t = t.next) {if (c == t.val){ return contient(s, i+1, t.next); 
                                               }else if (c < t.val){ return false; } // car liste triée
                }
                return false ;
@@ -62,7 +64,7 @@ class Arbre {
             }
 
 
-           public static affiche(PrintStream o, Arbre t) { 
+           public static void affiche(PrintStream o, Arbre t) { 
                PrintWriter out = new PrintWriter (o) ;
                affiche(out, t) ; 
                out.flush() ;
@@ -72,13 +74,13 @@ class Arbre {
                  if (t.val == FM) { out.println(path); t = t.next ;
                   }
                   for ( ; t != null ; t = t.next) {
-                      path.push(t.val) ; doPrint(out, t.down) ; path.pop() ;
+                      path.push(t.val) ; affiche(out, t.down) ; path.pop() ;
                    }
              }
 
 
              public static Arbre inter(Arbre a, Arbre b) {
-                  if (a.val == FM && b.val == FM) { return new Tree(EOW, null, interList(a.next, b.next)) ;
+                  if (a.val == FM && b.val == FM) { return new Arbre(FM, null, interList(a.next, b.next)) ;
                   } else { return interList(a, b); }
               }
 
@@ -89,11 +91,13 @@ class Arbre {
                         return null ;
                     } else if (a.val < b.val) { return interList(a.next, b) ;
                     } else if (b.val < a.val) { return interList(a, b.next) ;
-                    } else {  Tree d = inter(a.down, b.down) ;// a.val == b.val
+                    } else {  Arbre d = inter(a.down, b.down) ;// a.val == b.val
                               if (d == null) {  return interList(a.next, b.next) ;
                                } else { return new Arbre(a.val, d, interList(a.next, b.next)) ; }
                     }
                 }
 
 
-}
+} 
+   
+ 
