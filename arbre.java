@@ -10,6 +10,7 @@ class Arbre {
   Arbre down, next;
   final static char FM = '\0';// pour le marquage du fin de mot
   private static Stack path = new Stack ();//variable global, utile pour l'affichage 
+  private static  String mot = "";
 
   public Arbre(char val) { this.val = val ;down = next =null; }
   public Arbre(char val, Arbre b, Arbre s) {
@@ -87,20 +88,29 @@ class Arbre {
               return r ;
 
         }
-	
-	public static void affiche_(PrintWriter out, Arbre t) {
+  public static void affiche_(PrintWriter out, Arbre t) {
 
-		 if (t != null) {
-			 char c = t.val
-			 if (c == FM){ 
-				System.out.println(path);// affiche le contenu de la pile
-			 } else {
-        			 path.push(c) ; affiche_(out, t.down) ; path.pop() ;
-			 }
-		  affiche_(out, t.next) ;
+  if (t != null) {
 
-		 }
-	}
+    char c = t.val ;
+    
+
+    if (c == FM) {
+      System.out.println(mot); 
+
+    } else {
+           mot = mot + c;
+
+           affiche_(out, t.down) ;mot.substring(0,mot.length()-2);
+      
+
+    }
+
+      affiche_(out, t.next) ;
+
+  }
+
+}
 
 	public static void affiche(PrintStream o, Arbre t) {
 		 PrintWriter out = new PrintWriter (o) ;
