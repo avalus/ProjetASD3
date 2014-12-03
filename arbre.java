@@ -54,29 +54,34 @@ class Arbre {
 
 
               
- 
-
-          public static Arbre ajoutDansList(Arbre t, char c, String s, int i) {
+ 	public static Arbre ajoutDansList(Arbre t, char c, String s, int i) {
 	      if (t == null || c < t.val) {return new Arbre(c, ajouter(null, s, i), t); // Ajouter devant   
                } else if (c == t.val) {  return new Arbre(c,ajouter(t.down, s, i), t.next) ;
                } else {return new Arbre(t.val, t.down,ajoutDansList(t.next, c, s, i)); //  ajouter plus loin    
                }
             }
+	
+	public static void affiche_(PrintWriter out, Arbre t) {
 
+		 if (t != null) {
+			 char c = t.val
+			 if (c == FM){ 
+				System.out.println(path);// affiche le contenu de la pile
+			 } else {
+        			 path.push(c) ; affiche_(out, t.down) ; path.pop() ;
+			 }
+		  affiche_(out, t.next) ;
 
-           public static void affiche(PrintStream o, Arbre t) { 
-               PrintWriter out = new PrintWriter (o) ;
-               affiche(out, t) ; 
-               out.flush() ;
-            }
-                
-            public static void affiche(PrintWriter out, Arbre t) {
-                 if (t.val == FM) { out.println(path); t = t.next ;
-                  }
-                  for ( ; t != null ; t = t.next) {
-                      path.push(t.val) ; affiche(out, t.down) ; path.pop() ;
-                   }
-             }
+		 }
+	}
+
+	public static void affiche(PrintStream o, Arbre t) {
+		 PrintWriter out = new PrintWriter (o) ;
+		 affiche_(out, t) ;
+		 out.flush() ; // C'est plus rapide, mais il faut vider
+	}
+
+   public static void affiche(Arbre t) { affiche(System.out, t); }
 
 
              public static Arbre inter(Arbre a, Arbre b) {
