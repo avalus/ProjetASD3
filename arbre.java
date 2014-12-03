@@ -61,6 +61,33 @@ class Arbre {
                }
             }
 	
+	
+	
+
+         public static Arbre creer(BufferedReader in) {
+
+                 Arbre r = null ;
+
+                 String line ;
+
+                 try {
+
+                       while ((line = in.readLine()) != null) {
+
+                             r = ajouter(r, line) ;
+
+                        }
+
+                  }catch (IOException e){System.err.println(e.getMessage()) ;
+
+                                         System.exit(2);
+
+                   }
+
+              return r ;
+
+        }
+	
 	public static void affiche_(PrintWriter out, Arbre t) {
 
 		 if (t != null) {
