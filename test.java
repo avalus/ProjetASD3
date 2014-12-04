@@ -1,27 +1,40 @@
-import java.lang*;
-import java.util*;
+import java.lang.*;
+import java.util.*;
 import java.io.*;
-import java.util.Scanner;
 
-public class Test
+class Test
 {
-	public static void main(string []args)
+	public static void main(String []args)
 	{
-		try
+		Page p1 = new Page();
+		
+		for(int i = 0; i < args.length-1; ++i) // dico inclus
 		{
-			InputStream ips = new FileInputStream("txt"); 
-
-			InputStreamReader ipsr = new InputStreamReader(ips);
-
-			BufferedReader br=new BufferedReader(ipsr);
-
-            Arbre a = creer(br);
-
-            affiche(a);
-		} catch(Exception e)
-		{
-			System.out.println(e.toString());
+			
+			p1.p.add(i, new Arbre());
 		}
+		
+		for(int i = 0; i < args.length-1; ++i)
+		{
+			try
+			{
+				InputStream ips = new FileInputStream(args[i]);
+
+				InputStreamReader ipsr = new InputStreamReader(ips);
+
+				BufferedReader br = new BufferedReader(ipsr);
+				
+				p1.creerAt(i, br);
+				
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.toString());
+			}
+		}
+		
+		Arbre.affiche(p1.p.get(p1.p.size()-1));
 	}
 
 }

@@ -1,18 +1,34 @@
 import java.lang.*;
 import java.util.*;
 import java.io.*;
+import java.util.Scanner;
+
+/*!
+ * Classe Arbre, gestion des arbres des application
+ */
 
 class Arbre
 {
 	char val;
 	Arbre down, next;
 	final static char FM = '\0'; //fpour le marquage de fin de mot
-	private static Stack path = new Stack ();//variable global, utile pour l'affichage 
-	private static String mot = "";
-
+	private static Stack<Character> path = new Stack<Character>();//variable global, utile pour l'affichage 
+    private static String mot = "";
+    
+    public Arbre()
+    {
+		this.val = '\0';
+		down = next = null;
+	}
+    
 	public Arbre(char val)
 	{
-		this.val = val ;down = next =null;
+		this.val = val; down = next = null;
+	}
+	
+	public int getVal()
+	{
+		return val;
 	}
 	
 	public Arbre(char val, Arbre b, Arbre s)
@@ -100,8 +116,8 @@ class Arbre
 			return new Arbre(t.val, t.down,ajoutDansList(t.next, c, s, i)); //  ajouter plus loin    
         }
 	}
-	
-	public void union( Arbre b)
+
+	public void union(Arbre b)
     {
 		if (b != null)
 		{
@@ -124,8 +140,8 @@ class Arbre
 
     public static Arbre creer(BufferedReader in)
     {
-		Arbre r = null ;
-		String line ;
+		Arbre r = null;
+		String line;
 
 		try
 		{
@@ -151,7 +167,7 @@ class Arbre
 			
 			if (c == FM)
 			{
-				mot +=path.toString();
+				/*mot +=path.toString();
 				String mm ="";
 				mm += mot;
 				String m = "";
@@ -174,7 +190,8 @@ class Arbre
 					}
 				}
 				
-				mot = ""; 
+				mot = ""; */
+				System.out.println(path);
 			}
 			else
 			{ 
@@ -235,7 +252,25 @@ class Arbre
 			}
 		}
 	}
+	
+	public static void main(String []args)
+	{
+		try
+		{
+			InputStream ips = new FileInputStream("fichierTest.txt");
 
+			InputStreamReader ipsr = new InputStreamReader(ips);
+
+			BufferedReader br=new BufferedReader(ipsr);
+
+            Arbre a = Arbre.creer(br);
+
+            Arbre.affiche(a);
+		} catch(Exception e)
+		{
+			System.out.println(e.toString());
+		}
+	}
 } 
    
  

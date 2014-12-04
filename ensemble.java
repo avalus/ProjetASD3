@@ -1,7 +1,8 @@
 import java.io.File;
 import java.util.Scanner;
 
-public class EnsDisjoint {
+class EnsDisjoint
+{
 	private int[] id; 
 	private int[] sz;//chaque case sz[id] du tableau contient la taille de l'ensemble
 	private int nb; 
@@ -10,7 +11,7 @@ public class EnsDisjoint {
 	public EnsDisjoint(int N)
 	{
 		this.N = N;
-		count = N;
+		int count = N;
 
 		id = new int[N];
 		
@@ -81,7 +82,7 @@ public class EnsDisjoint {
 			id[j] = i;
 			sz[i] += sz[j];
 		}
-        nb-–; //decrement nb
+        nb--; //decrement nb
 
 		System.out.println(p + " et " + q + " sont maintenant connectés.");
 		System.out.print("L'id de" + p + "est : "+ id[p]);

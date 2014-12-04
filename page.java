@@ -1,20 +1,34 @@
 import java.lang.*;
 import java.util.*;
+import java.io.*;
+import java.util.Scanner;
 
 class Page
 {
-	int id;
-	Arbre p;
+	Vector<Arbre> p;
 	
-	public Page( int id)
+	public Page()
 	{
-		this.id = id;
-		p = new Arbre<char>(id);
+		p = new Vector<Arbre>();
 	}
-
-	public void inserer(String mot)
+	/*
+	public void inserer(int i, Arbre a)
 	{
-	  
+		p.set(i, a);
 	}
-
+	*/
+	public int getId(int index)
+	{
+		return p.get(index).getVal();
+	}
+	
+	public void supprimer(int index)
+	{
+		p.removeElementAt(index);
+	}
+	
+	public void creerAt(int index, BufferedReader b)
+	{
+		p.set(index, Arbre.creer(b));
+	}
 }
