@@ -26,7 +26,7 @@ class Arbre
 		this.val = val; down = next = null;
 	}
 	
-	public int getVal()
+	public char getVal()
 	{
 		return val;
 	}
@@ -51,7 +51,7 @@ class Arbre
 		}
 		else
 		{
-			for( ; t != null ; t = t.next)
+			for(/*t*/; t != null ; t = t.next)
 			{
 				if (c == t.val)
 				{
