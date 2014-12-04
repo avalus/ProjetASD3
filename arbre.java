@@ -62,7 +62,29 @@ class Arbre {
                }
             }
 	
-	
+	        public void union( Arbre b)
+         {
+           if (b != null) {
+
+    		char c = b.val ;
+
+    		if (c == FM) {
+                     
+                    mot += path.toString();
+      		    ajouter(this,mot);
+                    mot = ""; 
+
+    		} else {
+           		path.push(c);
+
+          		this.union(b.down); path.pop();
+
+    	  	}
+
+               this.union(b.next);
+
+     	   }
+         }
 	
 
          public static Arbre creer(BufferedReader in) {
