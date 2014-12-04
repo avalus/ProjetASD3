@@ -8,8 +8,8 @@ class Page
 	
 	public Page( int id)
 	{
-	  this.id = id;
-	  p = new Arbre<char>(id);
+		this.id = id;
+		p = new Arbre<char>(id);
 	}
 
 	public void inserer(String mot)

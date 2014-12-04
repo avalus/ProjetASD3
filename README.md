@@ -1,12 +1,6 @@
 ProjetASD3
 ==========
 
-##### TODO :
-	- corriger la classe Avl -> fonctions min et max
-	- compiler la classe Avl : la plupart des autres classes ont besoin de celles-ci pour compiler
-	- compiler les autres classes
-	- continuer le dev. du programme
-
 <i>Projet d'Algorithmique et Structure de Données 3 (2014)</i>
 
 - __Programme aussi efficace que possible -> avoir une complexité minimale (garantie d'une efficacité maximum)__
