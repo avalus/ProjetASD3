@@ -1,7 +1,6 @@
 import java.lang.*;
 import java.util.*;
 import java.io.*;
-import java.util.Scanner;
 
 class Page
 {
@@ -22,7 +21,7 @@ class Page
 		return p.get(index).getVal();
 	}
 	
-	public void supprimer(int index)
+	public void supprimerAt(int index)
 	{
 		p.removeElementAt(index);
 	}
