@@ -8,7 +8,7 @@ class Chapitre
 	
 	public Chapitre()
 	{
-		c = new Vector<Vector>();
+		c = new Vector<Page>();
 	}
 	
 	public void ajouterPage(Page p)
