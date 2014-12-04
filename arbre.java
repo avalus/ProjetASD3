@@ -96,13 +96,24 @@ class Arbre {
     
 
     if (c == FM) {
-      System.out.println(mot); 
-
-    } else {
-           mot = mot + c;
-
-           affiche_(out, t.down) ;mot.substring(0,mot.length()-2);
+      mot +=path.toString();
+      String mm ="";
+      mm += mot;
+      String m = "";
+      for(int i = 0; i<mot.length(); ++i)
+       {
+           int j = i+1;
+           int car =(int)mot.charAt(i); 
+	  if( 33 <= car && car <= 127){ if((int)mot.charAt(i) == 44 &&(int)mot.charAt(j) == 44){System.out.println(m);m = "";}else if((int)mot.charAt(i) != 44) {m += mot.charAt(i);}
+          }
+       }
       
+
+      mot = ""; 
+
+    } else { 
+
+       path.push(c); affiche_(out, t.down); path.pop() ;
 
     }
 
