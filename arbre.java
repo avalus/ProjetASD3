@@ -14,23 +14,31 @@ class Arbre
 	final static char FM = '\0'; //fpour le marquage de fin de mot
 	private static Stack<Character> path = new Stack<Character>();//variable global, utile pour l'affichage 
     private static String mot = "";
+    private static int size = 0;//nombre de mot dans l'arbre
     
     public Arbre()
     {
 		this.val = '\0';
 		down = next = null;
+              
 	}
     
 	public Arbre(char val)
 	{
 		this.val = val; down = next = null;
+                
 	}
-	
-	public char getVal()
+	public int getSize()
+        {
+		return size;
+	}
+
+	public int getVal()
 	{
 		return val;
 	}
 	
+        public void increment(){size++;}
 	public Arbre(char val, Arbre b, Arbre s)
 	{
 		this.val = val;
@@ -74,6 +82,9 @@ class Arbre
 	
 	public static Arbre ajouter(Arbre a, String s)
 	{
+		
+ 
+	
 		return ajouter(a, s, 0);
 	}
 
@@ -84,16 +95,21 @@ class Arbre
 	public static Arbre ajouter(Arbre t, String s, int i)//t peut être vide
 	{
 		char c = getChar(s, i);
+                
+             
 		if(c == FM)
 		{
+			
 			if(t != null && t.val == FM)
 			{
+				
 				return t; 
 			}
 			else
 			{
+				
 				return new Arbre(FM, null, t); // Ajoute effectivement le mot vide.  
-            }
+            		}
 		}
 		else
 		{
@@ -138,6 +154,8 @@ class Arbre
 		}
 	}
 
+ 
+
     public static Arbre creer(BufferedReader in)
     {
 		Arbre r = null;
@@ -147,7 +165,8 @@ class Arbre
 		{
 			while((line = in.readLine()) != null)
 			{
-				r = ajouter(r, line) ;
+				r = ajouter(r, line);
+                             
 			}
         }
         catch(IOException e)
@@ -166,12 +185,11 @@ class Arbre
 			char c = t.val;
 			
 			if (c == FM)
-			{
+			{	size++;
 				/*mot +=path.toString();
 				String mm ="";
 				mm += mot;
 				String m = "";
-
 				for(int i = 0; i<mot.length(); ++i)
 				{
 					int j = i+1;
@@ -242,35 +260,89 @@ class Arbre
 		{  
 			Arbre d = inter(a.down, b.down); // a.val == b.val
 			
-            if (d == null)
-            {
+                        if (d == null)
+                         {
 				return interList(a.next, b.next);
-            }
-            else
-            { 
+                         }
+                        else
+                        { 
 				return new Arbre(a.val, d, interList(a.next, b.next));
 			}
 		}
 	}
-	
+
+
 	public static void main(String []args)
 	{
-		try
+		Page p1 = new Page();
+                Page p2 = new Page();
+                EnsDisjoint ens = new EnsDisjoint(args.length-1);
+		
+		for(int i = 0; i < args.length-1; ++i) // dico inclus
 		{
-			InputStream ips = new FileInputStream("fichierTest.txt");
-
-			InputStreamReader ipsr = new InputStreamReader(ips);
-
-			BufferedReader br=new BufferedReader(ipsr);
-
-            Arbre a = Arbre.creer(br);
-
-            Arbre.affiche(a);
-		} catch(Exception e)
-		{
-			System.out.println(e.toString());
+			
+			p1.p.add(i, new Arbre());
 		}
+		
+                for(int i = 0; i < args.length-1; ++i) // dico inclus
+		{
+			
+			p2.p.add(i, new Arbre());
+		}
+		for(int i = 0; i < args.length-1; ++i)
+		{
+			try
+			{
+				InputStream ips = new FileInputStream(args[i]);
+
+				InputStreamReader ipsr = new InputStreamReader(ips);
+
+				BufferedReader br = new BufferedReader(ipsr);
+				
+				p1.creerAt(i, br);
+				
+				
+			}
+			catch(Exception e)
+			{
+				System.out.println(e.toString());
+			}
+		}
+
+                for(int i = 0; i < p1.p.size(); ++i)
+                {
+                  Arbre g = inter( p1.p.get(i),p1.p.get(p1.p.size()-1));
+                 if(g != null)
+                 { p1.p.set(i,g);}
+
+		}
+		
+		//affiche(p1.p.get(2));
+		System.out.println("\n");
+                System.out.println(p1.p.get(3).getVal());
+               // Arbre g = inter(p1.p.get(1),p1.p.get(2));
+               // affiche(g);
+           int l = Integer.parseInt(args[args.length - 1]);
+             for(int i = 0; i < p1.p.size(); ++i)
+              {
+		 for(int j = p1.p.size()-2; j >i ; j--)
+		{ 
+                   affiche( inter(p1.p.get(i), p1.p.get(j)) );
+                   if(inter(p1.p.get(i), p1.p.get(j)).getSize()>= l)
+		    {
+                      //int a = p1.p.get(i).getVal();
+                      //int b = p1.p.get(j).getVal(); 
+                     // if(i<p1.p.size()-2)
+                        ens.union(i+1,j+1);
+                    }
+                   System.out.println("\n"); 
+                }
+	      }
+
 	}
+
+
+
 } 
    
  
