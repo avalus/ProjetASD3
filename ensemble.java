@@ -69,10 +69,10 @@ class EnsDisjoint
 			return;
 		}
 
-		System.out.print("La taille de l'ensembe de" + p + "est : " + sz[i]);
-		System.out.println("La taille de l'ensemble de" + q + "est : " + sz[j]);
+		System.out.println("Le nombre de pages du chapitre contenant la page " + p + " est : " + sz[i]);
+		System.out.println("Le nombre de pages du chapitre contenant la page " + q + " est : " + sz[j]);
 		
-		if(sz[i] < sz[j]) //si la taille du goupe de p est plu petit que celle de q
+		if(sz[i] < sz[j]) //si la taille du groupe de p est plu petit que celle de q
 		{ 
 			id[i] = j; //alors l'id du groupe de p devient celui de q
 			sz[j] += sz[i]; // on met à jour la taille du nouveau groupe de q obtenu
@@ -85,8 +85,8 @@ class EnsDisjoint
         nb--; //decrement nb
 
 		System.out.println(p + " et " + q + " sont maintenant connectés.");
-		System.out.print("L'id de" + p + "est : "+ id[p]);
-		System.out.println(". L'id de"+ q + " est : " + id[q]);
+		System.out.println("Le chapitre contenant la page  " + p + " est : "+ id[p]);
+		System.out.println("Le chapitre contenant la page  "+ q + " est : " + id[q]);
 		System.out.print(" ensemble courant : ");
 		
 		for(int a = 0; a < N; a++)
@@ -96,38 +96,11 @@ class EnsDisjoint
 		
 		System.out.println("\n");
 	}//fin union()
+      public void affiche()
+       {
 
-	public static void main(String[] args)
-	{
-		Scanner scan = null;
-		
-		try
-		{
-		  	scan = new Scanner(new File("C:/whereever you saved the txt filetinyUF.txt"));
-	    }
-	    catch(Exception ex)
-	    {
-		    System.out.println("Fichier non trouvé!");
-		}
-		
-		int N = scan.nextInt();
-		System.out.println("Longeur de la liste: " + N);
 
-		EnsDisjoint wqu = new EnsDisjoint(N);
-		
-		while (scan.hasNext())
-		{
-			int p = scan.nextInt();
-			int q = scan.nextInt(); 
-			if(wqu.connecte(p, q))
-			{
-				System.out.println(p + " et " + q + "sont déjà connecté");
-				continue; //ignore si connectés
-			}
-			
-			wqu.union(p, q); 
-		}
-			System.out.println(wqu.count() + " éléments");
-			scan.close();
-	}//fin main()
+       }
+
+	 
 }
